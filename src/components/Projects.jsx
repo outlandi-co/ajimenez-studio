@@ -5,16 +5,16 @@ const projects = [
     title: "VORTIKO Aerial",
     desc: "Drone cinematography and branding",
     images: [
-      "https://via.placeholder.com/600x400",
-      "https://via.placeholder.com/600x400",
-      "https://via.placeholder.com/600x400"
+       //"https://via.placeholder.com/600x400",
+       //"https://via.placeholder.com/600x400",
+       //"https://via.placeholder.com/600x400"
     ]
   },
   {
     title: "SignaVi Studio",
     desc: "Full-stack production system",
     images: [
-      "https://via.placeholder.com/600x400",
+       //"https://via.placeholder.com/600x400",
       "https://via.placeholder.com/600x400"
     ]
   },
@@ -22,16 +22,16 @@ const projects = [
     title: "Photography",
     desc: "Exploration of light, color, and composition",
     images: [
-      "https://via.placeholder.com/600x400",
-      "https://via.placeholder.com/600x400"
+       //"https://via.placeholder.com/600x400",
+       //"https://via.placeholder.com/600x400"
     ]
   },
   {
     title: "Typography: Caslon",
     desc: "Editorial layout and type study",
     images: [
-      "https://via.placeholder.com/600x400",
-      "https://via.placeholder.com/600x400"
+       //"https://via.placeholder.com/600x400",
+       //"https://via.placeholder.com/600x400"
     ]
   }
 ]
