@@ -15,7 +15,7 @@ const projects = [
     desc: "Full-stack production system",
     images: [
        //"https://via.placeholder.com/600x400",
-      "https://via.placeholder.com/600x400"
+      //"https://via.placeholder.com/600x400"
     ]
   },
   {
