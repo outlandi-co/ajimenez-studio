@@ -14,7 +14,7 @@ const projects = [
     title: "The Garden Creamery",
     desc: "Ice Cream Shop Branding",
     images: ["/images/Garden_Creamery.jpg"],
-    link:"https://www.figma.com/proto/UpnSZlpON9y8p3XUnYAWKR/Garden-Creamery?node-id=46-9230&t=drR33WXXZ3A6Axau-1&scaling=min-zoom&content-scaling=fixed&page-id=11%3A1816&starting-point-node-id=13%3A2457"
+    link: "https://www.figma.com/proto/UpnSZlpON9y8p3XUnYAWKR/Garden-Creamery?node-id=46-9230&t=drR33WXXZ3A6Axau-1&scaling=min-zoom&content-scaling=fixed&page-id=11%3A1816&starting-point-node-id=13%3A2457"
   },
   {
     slug: "Plenty_Market",
@@ -43,7 +43,6 @@ export default function Projects() {
   const navigate = useNavigate()
   const [columns, setColumns] = useState(3)
 
-  /* 🔥 RESPONSIVE GRID CONTROL */
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -64,89 +63,95 @@ export default function Projects() {
     <section
       id="projects"
       style={{
-        padding: "80px 40px",
+        padding: "80px 24px",
         background: "#000",
         color: "#fff"
       }}
     >
-      <h2 style={{ fontSize: "2rem", marginBottom: "40px" }}>
-        Selected Work
-      </h2>
-
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${columns}, 1fr)`,
-          gap: "30px"
+          maxWidth: "1200px",
+          margin: "0 auto",
+          width: "100%"
         }}
       >
-        {projects.map((p, i) => (
-          <div
-            key={i}
-            onClick={() => {
-              if (p.link) {
-                window.open(p.link, "_blank", "noopener,noreferrer")
-              } else {
-                navigate(`/work/${p.slug}`)
-              }
-            }}
-            style={{
-              cursor: "pointer",
-              background: "#111",
-              borderRadius: "12px",
-              overflow: "hidden",
-              position: "relative", // 🔥 FIXED for badge
-              transition: "all 0.3s ease"
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = "scale(1.03)"
-              e.currentTarget.style.boxShadow = "0 15px 40px rgba(0,0,0,0.6)"
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = "scale(1)"
-              e.currentTarget.style.boxShadow = "none"
-            }}
-          >
-            {/* 🖼 IMAGE */}
-            {p.images?.[0] && (
-              <img
-                src={p.images[0]}
-                alt={p.title}
-                style={{
-                  width: "100%",
-                  height: "220px",
-                  objectFit: "cover"
-                }}
-              />
-            )}
+        <h2 style={{ fontSize: "2rem", marginBottom: "40px" }}>
+          Selected Work
+        </h2>
 
-            {/* 🔥 LIVE BADGE */}
-            {p.link && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: "12px",
-                  right: "12px",
-                  background: "#00ffcc",
-                  color: "#000",
-                  padding: "6px 10px",
-                  fontSize: "11px",
-                  borderRadius: "6px",
-                  fontWeight: "bold",
-                  letterSpacing: "0.5px"
-                }}
-              >
-                LIVE
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: `repeat(${columns}, 1fr)`,
+            gap: "30px"
+          }}
+        >
+          {projects.map((p, i) => (
+            <div
+              key={i}
+              onClick={() => {
+                if (p.link) {
+                  window.open(p.link, "_blank", "noopener,noreferrer")
+                } else {
+                  navigate(`/work/${p.slug}`)
+                }
+              }}
+              style={{
+                cursor: "pointer",
+                background: "#111",
+                borderRadius: "12px",
+                overflow: "hidden",
+                position: "relative",
+                transition: "all 0.3s ease"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "scale(1.03)"
+                e.currentTarget.style.boxShadow =
+                  "0 15px 40px rgba(0,0,0,0.6)"
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "scale(1)"
+                e.currentTarget.style.boxShadow = "none"
+              }}
+            >
+              {p.images?.[0] && (
+                <img
+                  src={p.images[0]}
+                  alt={p.title}
+                  style={{
+                    width: "100%",
+                    height: "220px",
+                    objectFit: "cover"
+                  }}
+                />
+              )}
+
+              {p.link && (
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "12px",
+                    right: "12px",
+                    background: "#00ffcc",
+                    color: "#000",
+                    padding: "6px 10px",
+                    fontSize: "11px",
+                    borderRadius: "6px",
+                    fontWeight: "bold",
+                    letterSpacing: "0.5px"
+                  }}
+                >
+                  LIVE
+                </div>
+              )}
+
+              <div style={{ padding: "20px" }}>
+                <h3 style={{ marginBottom: "10px" }}>{p.title}</h3>
+                <p style={{ opacity: 0.7, fontSize: "14px" }}>{p.desc}</p>
               </div>
-            )}
-
-            {/* 📝 TEXT */}
-            <div style={{ padding: "20px" }}>
-              <h3 style={{ marginBottom: "10px" }}>{p.title}</h3>
-              <p style={{ opacity: 0.7, fontSize: "14px" }}>{p.desc}</p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   )
