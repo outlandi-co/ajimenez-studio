@@ -61,11 +61,10 @@ export default function Projects() {
 
   return (
     <section
-      id="projects"
-      style={{
-        padding: "80px 24px",
-        background: "#000" // 🔥 page background (outer)
-      }}
+  id="projects"
+  style={{
+    padding: "80px 24px"
+  }}
     >
       <div
         style={{
