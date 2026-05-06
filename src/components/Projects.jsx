@@ -64,18 +64,20 @@ export default function Projects() {
       id="projects"
       style={{
         padding: "80px 24px",
-        background: "#000",
-        color: "#fff"
+        background: "#000" // 🔥 page background (outer)
       }}
     >
       <div
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
-          width: "100%"
+          width: "100%",
+          background: "#111", // 🔥 constrained background
+          padding: "40px",
+          borderRadius: "16px"
         }}
       >
-        <h2 style={{ fontSize: "2rem", marginBottom: "40px" }}>
+        <h2 style={{ fontSize: "2rem", marginBottom: "40px", color: "#fff" }}>
           Selected Work
         </h2>
 
@@ -98,7 +100,7 @@ export default function Projects() {
               }}
               style={{
                 cursor: "pointer",
-                background: "#111",
+                background: "#000",
                 borderRadius: "12px",
                 overflow: "hidden",
                 position: "relative",
@@ -137,15 +139,14 @@ export default function Projects() {
                     padding: "6px 10px",
                     fontSize: "11px",
                     borderRadius: "6px",
-                    fontWeight: "bold",
-                    letterSpacing: "0.5px"
+                    fontWeight: "bold"
                   }}
                 >
                   LIVE
                 </div>
               )}
 
-              <div style={{ padding: "20px" }}>
+              <div style={{ padding: "20px", color: "#fff" }}>
                 <h3 style={{ marginBottom: "10px" }}>{p.title}</h3>
                 <p style={{ opacity: 0.7, fontSize: "14px" }}>{p.desc}</p>
               </div>
