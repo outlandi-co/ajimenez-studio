@@ -1,12 +1,7 @@
 import { useNavigate } from "react-router-dom"
-
-/* 🔥 If you still want to use SlideshowCard, keep it.
-   Otherwise this file renders cards directly for full control */
-import SlideshowCard from "./SlideshowCard"
+import { useState, useEffect } from "react"
 
 const projects = [
-  
- 
   {
     slug: "Play_Octopus",
     title: "Play Octopus",
@@ -46,6 +41,24 @@ const projects = [
 
 export default function Projects() {
   const navigate = useNavigate()
+  const [columns, setColumns] = useState(3)
+
+  /* 🔥 RESPONSIVE GRID CONTROL */
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setColumns(1)
+      } else if (window.innerWidth < 1200) {
+        setColumns(2)
+      } else {
+        setColumns(3)
+      }
+    }
+
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   return (
     <section
@@ -63,7 +76,7 @@ export default function Projects() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+          gridTemplateColumns: `repeat(${columns}, 1fr)`,
           gap: "30px"
         }}
       >
@@ -80,13 +93,14 @@ export default function Projects() {
             style={{
               cursor: "pointer",
               background: "#111",
-              borderRadius: "10px",
+              borderRadius: "12px",
               overflow: "hidden",
-              transition: "transform 0.3s ease, box-shadow 0.3s ease"
+              position: "relative", // 🔥 FIXED for badge
+              transition: "all 0.3s ease"
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "scale(1.03)"
-              e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.5)"
+              e.currentTarget.style.boxShadow = "0 15px 40px rgba(0,0,0,0.6)"
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "scale(1)"
@@ -111,14 +125,15 @@ export default function Projects() {
               <div
                 style={{
                   position: "absolute",
-                  top: "10px",
-                  right: "10px",
+                  top: "12px",
+                  right: "12px",
                   background: "#00ffcc",
                   color: "#000",
-                  padding: "5px 10px",
-                  fontSize: "12px",
-                  borderRadius: "4px",
-                  fontWeight: "bold"
+                  padding: "6px 10px",
+                  fontSize: "11px",
+                  borderRadius: "6px",
+                  fontWeight: "bold",
+                  letterSpacing: "0.5px"
                 }}
               >
                 LIVE
@@ -128,7 +143,7 @@ export default function Projects() {
             {/* 📝 TEXT */}
             <div style={{ padding: "20px" }}>
               <h3 style={{ marginBottom: "10px" }}>{p.title}</h3>
-              <p style={{ opacity: 0.7 }}>{p.desc}</p>
+              <p style={{ opacity: 0.7, fontSize: "14px" }}>{p.desc}</p>
             </div>
           </div>
         ))}
