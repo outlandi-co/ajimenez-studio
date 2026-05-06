@@ -5,11 +5,28 @@ import { useNavigate } from "react-router-dom"
 import SlideshowCard from "./SlideshowCard"
 
 const projects = [
+  
+ 
   {
-    slug: "vortiko",
-    title: "VORTIKO Aerial",
-    desc: "Drone cinematography and branding",
-    images: ["/images/vortiko.jpg"]
+    slug: "Play_Octopus",
+    title: "Play Octopus",
+    desc: "Ice Cream Shop Branding",
+    images: ["/images/Play_Octopus.jpg"],
+    link: "https://www.figma.com/proto/AOyLczE5E5sHeGpUKeOyZt/Play-Octopus?node-id=136-38391&p=f&t=aBE9o2U61YViIMi9-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=136%3A17203&show-proto-sidebar=1"
+  },
+  {
+    slug: "The_Garden_Creamery",
+    title: "The Garden Creamery",
+    desc: "Ice Cream Shop Branding",
+    images: ["/images/Garden_Creamery.jpg"],
+    link:"https://www.figma.com/proto/UpnSZlpON9y8p3XUnYAWKR/Garden-Creamery?node-id=46-9230&t=drR33WXXZ3A6Axau-1&scaling=min-zoom&content-scaling=fixed&page-id=11%3A1816&starting-point-node-id=13%3A2457"
+  },
+  {
+    slug: "Plenty_Market",
+    title: "Plenty Market",
+    desc: "Local Farmer's market Site",
+    images: ["/images/Plenty_Market.jpg"],
+    link: "https://www.figma.com/proto/KJOkt1O8sieXQi1Hs3Rh1H/Plenty-Market?node-id=132-4250&t=Rl2J1uf70aogS3hP-1"
   },
   {
     slug: "venex",
