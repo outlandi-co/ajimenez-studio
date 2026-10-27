@@ -1,5 +1,9 @@
 import { useNavigate } from "react-router-dom"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 const projects = [
   {
@@ -42,6 +46,42 @@ const projects = [
 export default function Projects() {
   const navigate = useNavigate()
   const [columns, setColumns] = useState(3)
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return
+    }
+
+    const context = gsap.context(() => {
+      const cards = gsap.utils.toArray("[data-project-card]")
+
+      gsap.fromTo(
+        cards,
+        {
+          autoAlpha: 0,
+          y: 55
+        },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.85,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            once: true
+          }
+        }
+      )
+    }, section)
+
+    return () => context.revert()
+  }, [])
 
   useEffect(() => {
     const handleResize = () => {
@@ -61,6 +101,7 @@ export default function Projects() {
 
   return (
     <section
+      ref={sectionRef}
   id="projects"
   style={{
     padding: "80px 24px"
@@ -90,6 +131,7 @@ export default function Projects() {
           {projects.map((p, i) => (
             <div
               key={i}
+              data-project-card
               onClick={() => {
                 if (p.link) {
                   window.open(p.link, "_blank", "noopener,noreferrer")
