@@ -5,6 +5,10 @@ export default function Hero() {
   const heroRef = useRef(null)
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return
+    }
+
     const context = gsap.context(() => {
       gsap.fromTo(
         [
