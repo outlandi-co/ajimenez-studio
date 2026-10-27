@@ -52,36 +52,54 @@ export default function Projects() {
     const section = sectionRef.current
     if (!section) return
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches) {
       return
     }
 
     const context = gsap.context(() => {
-      const cards = gsap.utils.toArray("[data-project-card]")
-
-      gsap.fromTo(
-        cards,
-        {
-          autoAlpha: 0,
-          y: 55
-        },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.85,
-          stagger: 0.12,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 80%",
-            once: true
-          }
-        }
+      const cards = gsap.utils.toArray(
+        "[data-project-card]",
+        section
       )
+
+      cards.forEach((card, index) => {
+        const direction = index % 2 === 0 ? 1 : -1
+
+        gsap.fromTo(
+          card,
+          {
+            autoAlpha: 0.25,
+            y: 55,
+            rotationY: direction * -70,
+            scale: 0.9,
+            transformOrigin: direction > 0
+              ? "right center"
+              : "left center",
+            force3D: true
+          },
+          {
+            autoAlpha: 1,
+            y: 0,
+            rotationY: 0,
+            scale: 1,
+            ease: "none",
+            force3D: true,
+            scrollTrigger: {
+              trigger: card.parentElement,
+              start: "top 95%",
+              end: "top 60%",
+              scrub: 0.9,
+              invalidateOnRefresh: true
+            }
+          }
+        )
+      })
     }, section)
 
     return () => context.revert()
-  }, [])
+  }, [columns])
 
   useEffect(() => {
     const handleResize = () => {
@@ -112,7 +130,7 @@ export default function Projects() {
           maxWidth: "1200px",
           margin: "0 auto",
           width: "100%",
-          background: "#111", // 🔥 constrained background
+          background: "rgba(17, 17, 17, 0.74)", // 🔥 constrained background
           padding: "40px",
           borderRadius: "16px"
         }}
@@ -125,12 +143,20 @@ export default function Projects() {
           style={{
             display: "grid",
             gridTemplateColumns: `repeat(${columns}, 1fr)`,
-            gap: "30px"
+            gap: "30px",
+            perspective: "1100px"
           }}
         >
           {projects.map((p, i) => (
             <div
               key={i}
+              data-project-trigger
+              style={{
+                perspective: "1100px",
+                minWidth: 0
+              }}
+            >
+              <div
               data-project-card
               onClick={() => {
                 if (p.link) {
@@ -145,15 +171,15 @@ export default function Projects() {
                 borderRadius: "12px",
                 overflow: "hidden",
                 position: "relative",
-                transition: "all 0.3s ease"
+                transition: "filter 0.3s ease, box-shadow 0.3s ease"
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = "scale(1.03)"
+                e.currentTarget.style.filter = "brightness(1.08)"
                 e.currentTarget.style.boxShadow =
                   "0 15px 40px rgba(0,0,0,0.6)"
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = "scale(1)"
+                e.currentTarget.style.filter = "brightness(1)"
                 e.currentTarget.style.boxShadow = "none"
               }}
             >
@@ -191,6 +217,7 @@ export default function Projects() {
                 <h3 style={{ marginBottom: "10px" }}>{p.title}</h3>
                 <p style={{ opacity: 0.7, fontSize: "14px" }}>{p.desc}</p>
               </div>
+            </div>
             </div>
           ))}
         </div>

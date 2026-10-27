@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import Navbar from "./components/Navbar"
+import ScrollArtwork from "./components/ScrollArtwork"
 import Hero from "./components/Hero"
 import Projects from "./components/Projects"
 import About from "./components/About"
@@ -22,12 +23,15 @@ function Home() {
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
+      <ScrollArtwork />
+      <div style={{ position: "relative", zIndex: 2 }}>
+        <Navbar />
 
-      <Routes>
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/work/:slug" element={<ProjectPage />} />
-      </Routes>
+        </Routes>
+      </div>
     </BrowserRouter>
   )
 }
