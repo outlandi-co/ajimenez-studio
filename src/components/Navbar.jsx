@@ -1,10 +1,12 @@
-import logo from "../assets/ajimenezstudio.png"
-
 export default function Navbar() {
   return (
     <nav className="navbar">
       <a href="#top" className="logo-link">
-        <img src={logo} alt="AJimenez Studio Logo" className="logo-img" />
+        <img
+          src="/aj-studio-logo.svg"
+          alt="AJ Studio Logo"
+          className="logo-img"
+        />
       </a>
 
       <div className="nav-links">
