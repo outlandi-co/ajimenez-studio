@@ -1,6 +1,44 @@
+import { useEffect, useRef } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
+
 export default function About() {
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return
+    }
+
+    const context = gsap.context(() => {
+      gsap.fromTo(
+        ".section-title, p",
+        { autoAlpha: 0, y: 40 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0.18,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            once: true
+          }
+        }
+      )
+    }, section)
+
+    return () => context.revert()
+  }, [])
+
   return (
-    <section id="about" className="about">
+    <section id="about" className="about" ref={sectionRef}>
       <h2 className="section-title">About</h2>
 
       <p>

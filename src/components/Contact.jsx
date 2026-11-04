@@ -1,6 +1,42 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 export default function Contact() {
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return
+    }
+
+    const context = gsap.context(() => {
+      gsap.fromTo(
+        ".section-title, .contact-form",
+        { autoAlpha: 0, y: 40 },
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.9,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 85%",
+            once: true
+          }
+        }
+      )
+    }, section)
+
+    return () => context.revert()
+  }, [])
+
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -38,7 +74,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="contact">
+    <section id="contact" className="contact" ref={sectionRef}>
       <h2 className="section-title">Contact</h2>
 
       <form className="contact-form" onSubmit={handleSubmit}>
