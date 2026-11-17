@@ -295,3 +295,11 @@ body {
     min-width: 0;
   }
 }
+
+/* Temporarily hide third-party accessibility widget */
+#userwayAccessibilityIcon,
+#userwayAccessibilityIconWrapper,
+#acsbWidgetButton,
+[data-acsb="widget"] {
+  display: none !important;
+}

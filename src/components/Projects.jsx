@@ -6,37 +6,36 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import "../styles/Projects.css";
 
 gsap.registerPlugin(ScrollTrigger)
-
-
+  
 const projects = [
   {
-    slug: "Play_Octopus",
-    title: "Play Octopus",
-    desc: "Interactive UX/UI prototype exploring playful digital experiences and visual design.",
-    category: "UX/UI Design",
-    images: ["/images/Play_Octopus.jpg"],
-    link: "https://www.figma.com/proto/AOyLczE5E5sHeGpUKeOyZt/Play-Octopus?node-id=136-38391&p=f&t=aBE9o2U61YViIMi9-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=136%3A17203&show-proto-sidebar=1",
-    status: "PROTOTYPE"
+    slug: "venex",
+    title: "VENEX",
+    desc: "An event management experience connecting customers, vendors, and event coordinators through user-centered design.",
+    category: "UX/UI Design · Mobile Application",
+    images: ["/images/venex.jpg"],
+    link: "https://client-venex.vercel.app",
+    status: "LIVE"
   },
   {
     slug: "The_Garden_Creamery",
     title: "The Garden Creamery",
-    desc: "Responsive ice cream shop website designed to help customers explore flavors, discover the brand, and find locations.",
-    category: "Responsive Web Design",
+    desc: "A responsive website designed to help customers discover ice cream flavors, explore the brand, and find shop locations.",
+    category: "Responsive Web Design · Front-End Development",
     images: ["/images/Garden_Creamery.jpg"],
-    link: "https://www.figma.com/proto/UpnSZlpON9y8p3XUnYAWKR/Garden-Creamery?node-id=46-9230&t=drR33WXXZ3A6Axau-1&scaling=min-zoom&content-scaling=fixed&page-id=11%3A1816&starting-point-node-id=13%3A2457",
-    status: "PROTOTYPE"
+    link: null,
+    status: "CASE STUDY"
   },
   {
-    slug: "venex",
-    title: "Venex",
-    desc: "Event management platform designed around the distinct needs of customers, vendors, and event coordinators.",
-    category: "UX Research & Product Design",
-    images: ["/images/venex.jpg"],
-    link: "https://client-venex.vercel.app",
-    status: "LIVE"
+    slug: "yosemite-go",
+    title: "Yosemite Go",
+    desc: "A mobile experience designed to help Yosemite visitors explore destinations, discover activities, and plan their adventures.",
+    category: "UX/UI Design · Mobile Experience",
+    images: ["/images/yosemite-go.jpg"],
+    link: null,
+    status: "CASE STUDY"
   }
-]
+];
 
 export default function Projects() {
   const navigate = useNavigate()
