@@ -252,3 +252,46 @@ html {
     padding: 15px 20px;
   }
 }
+
+
+/* =====================================
+   MOBILE VIEWPORT OVERFLOW FIX
+   ===================================== */
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@media (max-width: 767px) {
+  .portfolio-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 100px;
+  }
+
+  .hero,
+  .about,
+  .contact,
+  .portfolio-projects-section {
+    max-width: 100%;
+    min-width: 0;
+  }
+}
