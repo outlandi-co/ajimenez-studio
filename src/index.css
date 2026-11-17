@@ -6,15 +6,27 @@ body {
 }
 
 /* NAVBAR */
+
+/* NAVBAR — Fixed at top on every page */
+
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px 40px;
-  position: sticky;
+
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+
+  width: 100%;
+  box-sizing: border-box;
+
   background: #0d0d0d;
-  z-index: 1000;
+  z-index: 10002;
 }
+
 
 .logo {
   font-weight: bold;
@@ -177,3 +189,66 @@ body {
 }
 
 
+
+/* ==========================================
+   RESPONSIVE CONTENT LAYOUT
+   Makes room for the floating SkillDock
+   ========================================== */
+
+@media (min-width: 768px) {
+  .portfolio-content {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding-left: 120px;
+    padding-right: 24px;
+  }
+
+  .about,
+  .contact {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Mobile: SkillDock moves to bottom */
+@media (max-width: 767px) {
+  .portfolio-content {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 90px;
+  }
+
+  .about,
+  .contact {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 60px 20px;
+  }
+}
+
+
+/* Fixed navbar spacing */
+
+.portfolio-content {
+  padding-top: 90px;
+  scroll-margin-top: 90px;
+}
+
+/* Allow anchor links to clear the navbar */
+html {
+  scroll-padding-top: 100px;
+}
+
+/* Responsive navbar positioning */
+@media (max-width: 767px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+}

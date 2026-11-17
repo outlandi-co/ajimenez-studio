@@ -1,0 +1,61 @@
+
+/* =========================================
+   PROJECTS SECTION
+   Responsive layout beside SkillDock
+   ========================================= */
+
+.portfolio-projects-section {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 80px 48px 80px 145px;
+}
+
+/* Existing project container appearance */
+.portfolio-projects-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px;
+  box-sizing: border-box;
+
+  background: rgba(17, 17, 17, 0.74);
+  border-radius: 16px;
+}
+
+/* Large desktop */
+@media (min-width: 1440px) {
+  .portfolio-projects-section {
+    padding-left: 145px;
+    padding-right: 48px;
+  }
+}
+
+/* Laptop */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .portfolio-projects-section {
+    padding-left: 120px;
+    padding-right: 24px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .portfolio-projects-section {
+    padding: 70px 20px 70px 95px;
+  }
+
+  .portfolio-projects-container {
+    padding: 30px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .portfolio-projects-section {
+    padding: 55px 16px 110px;
+  }
+
+  .portfolio-projects-container {
+    padding: 20px;
+  }
+}

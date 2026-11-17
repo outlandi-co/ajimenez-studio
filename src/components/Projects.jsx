@@ -3,43 +3,38 @@ import { useState, useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
+import "../styles/Projects.css";
+
 gsap.registerPlugin(ScrollTrigger)
+
 
 const projects = [
   {
     slug: "Play_Octopus",
     title: "Play Octopus",
-    desc: "Ice Cream Shop Branding",
+    desc: "Interactive UX/UI prototype exploring playful digital experiences and visual design.",
+    category: "UX/UI Design",
     images: ["/images/Play_Octopus.jpg"],
-    link: "https://www.figma.com/proto/AOyLczE5E5sHeGpUKeOyZt/Play-Octopus?node-id=136-38391&p=f&t=aBE9o2U61YViIMi9-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=136%3A17203&show-proto-sidebar=1"
+    link: "https://www.figma.com/proto/AOyLczE5E5sHeGpUKeOyZt/Play-Octopus?node-id=136-38391&p=f&t=aBE9o2U61YViIMi9-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=136%3A17203&show-proto-sidebar=1",
+    status: "PROTOTYPE"
   },
   {
     slug: "The_Garden_Creamery",
     title: "The Garden Creamery",
-    desc: "Ice Cream Shop Branding",
+    desc: "Responsive ice cream shop website designed to help customers explore flavors, discover the brand, and find locations.",
+    category: "Responsive Web Design",
     images: ["/images/Garden_Creamery.jpg"],
-    link: "https://www.figma.com/proto/UpnSZlpON9y8p3XUnYAWKR/Garden-Creamery?node-id=46-9230&t=drR33WXXZ3A6Axau-1&scaling=min-zoom&content-scaling=fixed&page-id=11%3A1816&starting-point-node-id=13%3A2457"
-  },
-  {
-    slug: "Plenty_Market",
-    title: "Plenty Market",
-    desc: "Local Farmer's market Site",
-    images: ["/images/Plenty_Market.jpg"],
-    link: "https://www.figma.com/proto/KJOkt1O8sieXQi1Hs3Rh1H/Plenty-Market?node-id=132-4250&t=Rl2J1uf70aogS3hP-1"
+    link: "https://www.figma.com/proto/UpnSZlpON9y8p3XUnYAWKR/Garden-Creamery?node-id=46-9230&t=drR33WXXZ3A6Axau-1&scaling=min-zoom&content-scaling=fixed&page-id=11%3A1816&starting-point-node-id=13%3A2457",
+    status: "PROTOTYPE"
   },
   {
     slug: "venex",
     title: "Venex",
-    desc: "Real-time chat platform for creative collaboration",
+    desc: "Event management platform designed around the distinct needs of customers, vendors, and event coordinators.",
+    category: "UX Research & Product Design",
     images: ["/images/venex.jpg"],
-    link: "https://client-venex.vercel.app"
-  },
-  {
-    slug: "signavi",
-    title: "SignaVi Studio",
-    desc: "Full-stack production system",
-    images: ["/images/signavi.jpg"],
-    link: "https://signavistudio.store"
+    link: "https://client-venex.vercel.app",
+    status: "LIVE"
   }
 ]
 
@@ -118,13 +113,11 @@ export default function Projects() {
   }, [])
 
   return (
-    <section
-      ref={sectionRef}
+   <section
+  ref={sectionRef}
   id="projects"
-  style={{
-    padding: "80px 24px"
-  }}
-    >
+  className="portfolio-projects-section"
+>
       <div
         style={{
           maxWidth: "1200px",
