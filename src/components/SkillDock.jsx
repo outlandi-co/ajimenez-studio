@@ -10,35 +10,54 @@ export default function SkillDock() {
   const panelRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const selected = active === null ? null : skills[active];
 
-  useEffect(() => {
-    setActive(null);
-  }, [location.pathname]);
+useEffect(() => {
+  if (!panelRef.current || active === null) return;
 
-  useEffect(() => {
-    if (!panelRef.current || active === null) return;
+  if (
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    return;
+  }
 
-    if (window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches) return;
+  const animation = gsap.fromTo(
+    panelRef.current,
+    {
+      x: -35,
+      autoAlpha: 0
+    },
+    {
+      x: 0,
+      autoAlpha: 1,
+      duration: 0.35,
+      ease: "power3.out"
+    }
+  );
 
-    gsap.fromTo(
-      panelRef.current,
-      { x: -35, autoAlpha: 0 },
-      { x: 0, autoAlpha: 1, duration: 0.35, ease: "power3.out" }
-    );
-  }, [active]);
+  return () => animation.kill();
+}, [active]);
 
-  useEffect(() => {
-    const handleKey = (event) => {
-      if (event.key === "Escape") setActive(null);
-    };
+  
 
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, []);
+useEffect(() => {
+  const handleKey = (event) => {
+    if (event.key === "Escape") {
+      setActive(null);
+      setMobileOpen(false);
+    }
+  };
+
+  window.addEventListener("keydown", handleKey);
+
+  return () => {
+    window.removeEventListener("keydown", handleKey);
+  };
+}, []);
+
+
 
   const openSkill = (index) => {
     setActive(current => current === index ? null : index);
@@ -54,6 +73,71 @@ export default function SkillDock() {
           onClick={() => setActive(null)}
         />
       )}
+
+{/* Mobile floating trigger */}
+<button
+  type="button"
+  className="skill-mobile-trigger"
+  onClick={() => {
+    setMobileOpen(current => !current);
+    setActive(null);
+  }}
+  aria-label={mobileOpen ? "Close skills menu" : "Open skills menu"}
+  aria-expanded={mobileOpen}
+>
+  <span aria-hidden="true">{mobileOpen ? "×" : "☷"}</span>
+</button>
+
+{/* Mobile skills drawer */}
+{mobileOpen && (
+  <>
+    <button
+      type="button"
+      className="skill-mobile-backdrop"
+      onClick={() => setMobileOpen(false)}
+      aria-label="Close skills drawer"
+    />
+
+    <aside
+      className="skill-mobile-drawer"
+      aria-label="Skills navigation"
+    >
+      <div className="skill-mobile-header">
+        <h2>Explore My Skills</h2>
+
+        <button
+          type="button"
+          onClick={() => setMobileOpen(false)}
+          aria-label="Close skills drawer"
+        >
+          ×
+        </button>
+      </div>
+
+      <nav className="skill-mobile-list">
+        {skills.map(skill => (
+          <button
+            key={skill.slug}
+            type="button"
+            onClick={() => {
+              setMobileOpen(false);
+              navigate(`/skills/${skill.slug}`);
+              window.scrollTo(0, 0);
+            }}
+          >
+            <span className="skill-mobile-symbol" aria-hidden="true">
+              {skill.icon}
+            </span>
+
+            <span>{skill.title}</span>
+
+            <span aria-hidden="true">›</span>
+          </button>
+        ))}
+      </nav>
+    </aside>
+  </>
+)}
 
       <aside className="skill-dock" aria-label="Skills navigation">
         <div className="skill-dock-label">AJ</div>
