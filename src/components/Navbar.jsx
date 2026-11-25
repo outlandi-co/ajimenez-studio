@@ -1,7 +1,7 @@
 export default function Navbar() {
   return (
     <nav className="navbar">
-      <a href="#top" className="logo-link">
+      <a href="/#top" className="logo-link">
         <img
           src="/aj-studio-logo.svg"
           alt="AJ Studio Logo"
@@ -10,10 +10,10 @@ export default function Navbar() {
       </a>
 
       <div className="nav-links">
-        <a href="#projects">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+        <a href="/#projects">Work</a>
+        <a href="/#about">About</a>
+        <a href="/#contact">Contact</a>
       </div>
     </nav>
-  )
+  );
 }

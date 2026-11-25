@@ -160,39 +160,75 @@ export default function Projects() {
         section
       )
 
-      cards.forEach((card, index) => {
-        const direction = index % 2 === 0 ? 1 : -1
+      
+cards.forEach((card, index) => {
+  const isDesktop = window.innerWidth >= 1200
 
-        gsap.fromTo(
-          card,
-          {
-            autoAlpha: 0.25,
-            y: 55,
-            rotationY: direction * -70,
-            scale: 0.9,
-            transformOrigin:
-              direction > 0
-                ? "right center"
-                : "left center",
-            force3D: true
-          },
-          {
-            autoAlpha: 1,
-            y: 0,
-            rotationY: 0,
-            scale: 1,
-            ease: "none",
-            force3D: true,
-            scrollTrigger: {
-              trigger: card.parentElement,
-              start: "top 95%",
-              end: "top 60%",
-              scrub: 0.9,
-              invalidateOnRefresh: true
-            }
-          }
-        )
-      })
+  // ORIGINAL ANIMATION — TABLET AND MOBILE
+  const originalDirection = index % 2 === 0 ? 1 : -1
+
+  const originalRotation = originalDirection * -70
+
+  const originalOrigin =
+    originalDirection > 0
+      ? "right center"
+      : "left center"
+
+  // NEW ANIMATION — DESKTOP ONLY
+  const desktopRotation =
+    index === 0 ? 65 :
+    index === 2 ? -65 :
+    0
+
+  const desktopOrigin =
+    index === 0 ? "right center" :
+    index === 2 ? "left center" :
+    "center center"
+
+  gsap.fromTo(
+    card,
+    {
+      autoAlpha: 0.25,
+
+      y:
+        isDesktop && index === 1
+          ? 25
+          : 55,
+
+      rotationY: isDesktop
+        ? desktopRotation
+        : originalRotation,
+
+      scale:
+        isDesktop && index === 1
+          ? 1
+          : 0.9,
+
+      transformOrigin: isDesktop
+        ? desktopOrigin
+        : originalOrigin,
+
+      force3D: true
+    },
+    {
+      autoAlpha: 1,
+      y: 0,
+      rotationY: 0,
+      scale: 1,
+      ease: "none",
+      force3D: true,
+
+      scrollTrigger: {
+        trigger: card.parentElement,
+        start: "top 95%",
+        end: "top 60%",
+        scrub: 0.9,
+        invalidateOnRefresh: true
+      }
+    }
+  )
+})
+
     }, section)
 
     return () => context.revert()
